@@ -1,12 +1,10 @@
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 import { PassThrough } from "stream";
-
-console.log(process.env.GOOGLE_SERVICE_ACCOUNT_KEY)
+import path from "path";
 
 const auth = new google.auth.GoogleAuth({
-  
-  keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+  keyFile: path.join(process.cwd(), "service-account.json"),
   scopes: ["https://www.googleapis.com/auth/drive.file"],
 });
 
@@ -18,11 +16,12 @@ export async function POST(req) {
     const subject = formData.get("subject");
     const files = formData.getAll("resource");
 
-    if(files.length==0){
+    if (files.length == 0) {
       return NextResponse.json(
-        { success: false,  message: "No files selected. Please upload at least one file."
-          
-         },
+        {
+          success: false,
+          message: "No files selected. Please upload at least one file.",
+        },
         { status: 400 }
       );
     }
@@ -49,13 +48,21 @@ export async function POST(req) {
     }
 
     return NextResponse.json(
-      { success: true, message: "Your file has been submitted! We'll review it shortly, and once approved, it will be available on the site." },
+      {
+        success: true,
+        message:
+          "Your file has been submitted! We'll review it shortly, and once approved, it will be available on the site.",
+      },
       { status: 200 }
     );
   } catch (error) {
-    console.log
+    console.log(error);
     return NextResponse.json(
-      { success: false, message:"Something went wrong. Please try again or check the file format and size." },
+      {
+        success: false,
+        message:
+          "Something went wrong. Please try again or check the file format and size.",
+      },
       { status: 500 }
     );
   }
