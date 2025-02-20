@@ -4,7 +4,7 @@ export async function GET(req, { params }) {
   const { subject } = await params;
 
   try {
-    await mongoose.connect("mongodb://localhost:27017/acadigo");
+    await mongoose.connect(process.env.MONGO_URI);
 
     // Access the collection dynamically
     const subjectCollection = mongoose.connection.db.collection("subjects");
@@ -21,10 +21,13 @@ export async function GET(req, { params }) {
         }
       );
     }
-    return new Response(JSON.stringify({ success: true,  papers:Subject.papers }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ success: true, papers: Subject.papers }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
     console.error("Error fetching data:", error);
     return new Response(

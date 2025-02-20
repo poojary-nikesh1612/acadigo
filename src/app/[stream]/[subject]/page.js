@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
 import { CloudDownload, Eye } from "lucide-react";
 import Link from "next/link";
-import { notFound, useParams } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 
@@ -17,6 +17,7 @@ const Subject = () => {
   let { stream, subject } = useParams();
   const [papers, setPapers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     document.title = `II PUC ${subject.toUpperCase()} - Previous Year Papers & Study Materials`;
@@ -66,6 +67,18 @@ const Subject = () => {
       name: "Acadigo",
       url: "https://yourwebsite.com",
     },
+  };
+  const handleDownload = (e, download) => {
+    e.preventDefault();
+
+    const adLink =
+      "https://www.effectiveratecpm.com/dzbcv01i?key=a7b8b276ac02f839505afee4c8ed017f";
+
+    window.open(adLink, "_blank");
+
+    setTimeout(() => {
+      router.push(download);
+    }, 3000);
   };
 
   if (isLoading) {
@@ -153,11 +166,13 @@ const Subject = () => {
                         Preview <Eye size={24} />
                       </button>
                     </Link>
-                    <Link href={paper.download}>
-                      <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-6">
-                        Download <CloudDownload size={24} />
-                      </button>
-                    </Link>
+
+                    <button
+                      className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-6"
+                      onClick={(e) => handleDownload(e, paper.download)}
+                    >
+                      Download <CloudDownload size={24} />
+                    </button>
                   </div>
                 </Card>
               ))}

@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Rightbar from "@/components/Rightbar";
 import { CloudDownload } from "lucide-react";
 import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Head from "next/head";
 import React from "react";
 import { useEffect } from "react";
@@ -15,6 +15,7 @@ const Paper = () => {
   const searchParams = useSearchParams();
   const preview = decodeURIComponent(searchParams.get("preview"));
   const download = decodeURIComponent(searchParams.get("download"));
+  const router = useRouter();
   paper = paper.replace("%20", " ");
 
   useEffect(() => {
@@ -48,7 +49,18 @@ const Paper = () => {
       url: "https://yourwebsite.com",
     },
   };
+  const handleDownload = (e) => {
+    e.preventDefault();
 
+    const adLink =
+      "https://www.effectiveratecpm.com/dzbcv01i?key=a7b8b276ac02f839505afee4c8ed017f";
+
+    window.open(adLink, "_blank");
+
+    setTimeout(() => {
+      router.push(download);
+    }, 3000);
+  };
   return (
     <div>
       <Head>
@@ -90,12 +102,15 @@ const Paper = () => {
             allow="autoplay"
           ></iframe>
           <div className="flex justify-center mt-5 h-[10%]">
-            <Link href={download} className="w-[96%]">
-              <button className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg">
+            <div className="w-[96%]">
+              <button
+                className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg"
+                onClick={handleDownload}
+              >
                 Download
                 <CloudDownload size={24} />
               </button>
-            </Link>
+            </div>
           </div>
         </div>
         <Rightbar />

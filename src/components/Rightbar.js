@@ -41,6 +41,7 @@ const Rightbar = () => {
           </button>
         </Link>
       </Card>
+      
       <Card
         className="p-2 mt-6 border-gray-400 "
         onClick={() => setisExpanded(!isExpanded)}
@@ -55,6 +56,8 @@ const Rightbar = () => {
           </CardDescription>
         </CardHeader>
       </Card>
+      <script async="async" data-cfasync="false" src="//pl25923124.effectiveratecpm.com/6f308c52b8cd2a7912d7dd8c2aac8ed7/invoke.js"></script>
+<div id="container-6f308c52b8cd2a7912d7dd8c2aac8ed7"></div>
     </div>
   );
 };
