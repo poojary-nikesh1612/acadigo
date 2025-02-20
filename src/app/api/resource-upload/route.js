@@ -2,8 +2,11 @@ import { google } from "googleapis";
 import { NextResponse } from "next/server";
 import { PassThrough } from "stream";
 
+console.log(process.env.GOOGLE_SERVICE_ACCOUNT_KEY)
+
 const auth = new google.auth.GoogleAuth({
-  keyFile:"./service-account.json",
+  
+  keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
   scopes: ["https://www.googleapis.com/auth/drive.file"],
 });
 
