@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { PassThrough } from "stream";
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+  keyFile:"./service-account.json",
   scopes: ["https://www.googleapis.com/auth/drive.file"],
 });
 
@@ -50,7 +50,7 @@ export async function POST(req) {
       { status: 200 }
     );
   } catch (error) {
-    console.log(error)
+    console.log
     return NextResponse.json(
       { success: false, message:"Something went wrong. Please try again or check the file format and size." },
       { status: 500 }
