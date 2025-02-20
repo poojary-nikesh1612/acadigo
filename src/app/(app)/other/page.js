@@ -2,7 +2,7 @@ import { Card, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import Head from "next/head";
 import React from "react";
-import other from "/Other.json";
+import other from "/other.json";
 
 export const metadata = {
   title: "PUC Study Resources | Extra Subjects & Elective Materials - Acadigo",
