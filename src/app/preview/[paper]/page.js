@@ -16,7 +16,7 @@ const Paper = () => {
   const preview = decodeURIComponent(searchParams.get("preview"));
   const download = decodeURIComponent(searchParams.get("download"));
   const router = useRouter();
-  paper = paper.replace("%20", " ");
+  paper = paper.replace(/%20/g, " ");;
 
   useEffect(() => {
     document.title = `II PUC ${paper} - Question Paper Preview & Download`;

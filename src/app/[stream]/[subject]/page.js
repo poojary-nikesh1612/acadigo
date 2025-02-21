@@ -40,7 +40,7 @@ const Subject = () => {
 
   if (!streams.includes(stream)) return notFound();
 
-  subject = subject.replace("%20", " ");
+  subject = paper.replace(/%20/g, " ");;
 
   useEffect(() => {
     const getPapers = async () => {
