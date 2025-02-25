@@ -42,7 +42,7 @@ const Paper = () => {
     "@type": "WebPage",
     name: `${paper} - II PUC Question Paper Preview & Download`,
     description: `Preview and download the II PUC ${paper} previous year question paper in PDF format for better exam preparation.`,
-    url: `https://yourwebsite.com/preview/${paper}`,
+    url: `https://acadigo.vercel.app/preview/${paper}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
@@ -84,7 +84,7 @@ const Paper = () => {
         />
         <meta
           property="og:url"
-          content={`https://yourwebsite.com/preview/${paper}`}
+          content={`https://acadigo.vercel.app/preview/${paper}`}
         />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">

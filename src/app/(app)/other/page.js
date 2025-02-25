@@ -17,7 +17,7 @@ export const metadata = {
       "PUC Study Resources | Extra Subjects & Elective Materials - Acadigo",
     description:
       "Get additional Karnataka 2nd PUC study materials for elective subjects and special courses.",
-    url: "https://yourwebsite.com/other",
+    url: "https://acadigo.vercel.app/other",
     type: "website",
   },
 };

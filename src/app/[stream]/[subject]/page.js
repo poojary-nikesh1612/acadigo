@@ -61,7 +61,7 @@ const Subject = () => {
     "@type": "WebPage",
     name: `II PUC ${subject} Question Papers`,
     description: `Download II PUC ${subject} previous year question papers, model papers, and study materials to prepare for Karnataka Board exams.`,
-    url: `https://yourwebsite.com/${stream}/${subject}`,
+    url: `https://acadigo.vercel.app/${stream}/${subject}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
@@ -101,9 +101,11 @@ const Subject = () => {
         </div>
       </div>
     );
-  } else if (papers.length === 0) {
+  } 
+  else if (papers.length === 0) {
     return notFound();
-  } else {
+  } 
+  else {
     return (
       <div>
         <Head>
@@ -127,7 +129,7 @@ const Subject = () => {
           />
           <meta
             property="og:url"
-            content={`https://yourwebsite.com/${stream}/${subject}`}
+            content={`https://acadigo.vercel.app/${stream}/${subject}`}
           />
           <meta property="og:type" content="website" />
           <script type="application/ld+json">
@@ -142,7 +144,7 @@ const Subject = () => {
               II PUC {subject.toUpperCase()}
             </h1>
             <div className="bg-[url(/bg.avif)] mt-4 rounded-lg w-full h-[200px] sm:h-[350px] flex items-center justify-center">
-              <div className="text-white max-w-[90%] text-5xl sm:text-6xl lg:text-7xl font-bold text-center">
+              <div className="text-white max-w-[90%] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
                 {subject.toUpperCase()}
               </div>
             </div>

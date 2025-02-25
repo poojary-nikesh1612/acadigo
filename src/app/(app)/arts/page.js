@@ -16,7 +16,7 @@ export const metadata = {
     title: "PUC Arts Study Materials | Previous Year Papers & Notes - Acadigo",
     description:
       "Download Karnataka 2nd PUC Arts subject-wise materials and question papers. Prepare smarter with Acadigo.",
-    url: "https://yourwebsite.com/arts",
+    url: "https://acadigo.vercel.app/arts",
     type: "website",
   },
 };

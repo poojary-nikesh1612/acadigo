@@ -18,7 +18,7 @@ export const metadata = {
       "PUC Language Study Materials | English, Kannada, Hindi & More - Acadigo",
     description:
       "Download Karnataka 2nd PUC Language subject-wise question papers and study guides.",
-    url: "https://yourwebsite.com/languages",
+    url: "https://acadigo.vercel.app/languages",
     type: "website",
   },
 };

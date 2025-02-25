@@ -18,7 +18,7 @@ export const metadata = {
       "PUC Science Study Materials | Physics, Chemistry & Math Notes - Acadigo",
     description:
       "Get Karnataka 2nd PUC Science subject-wise resources, including solved question papers and expert notes.",
-    url: "https://yourwebsite.com/science",
+    url: "https://acadigo.vercel.app/science",
     type: "website",
   },
 };

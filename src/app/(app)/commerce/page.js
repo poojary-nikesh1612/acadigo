@@ -18,7 +18,7 @@ export const metadata = {
       "PUC Commerce Study Materials | Business, Accounts & Economics - Acadigo",
     description:
       "Download PUC Commerce notes, solved papers, and study materials for Karnataka 2nd PUC. Prepare smarter with Acadigo.",
-    url: "https://yourwebsite.com/commerce",
+    url: "https://acadigo.vercel.app/commerce",
     type: "website",
   },
 };
