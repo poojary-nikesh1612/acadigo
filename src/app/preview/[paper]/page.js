@@ -16,7 +16,7 @@ const Paper = () => {
   const preview = decodeURIComponent(searchParams.get("preview"));
   const download = decodeURIComponent(searchParams.get("download"));
   const router = useRouter();
-  paper = paper.replace(/%20/g, " ");;
+  paper = paper.replace(/%20/g, " ");
 
   useEffect(() => {
     document.title = `II PUC ${paper} - Question Paper Preview & Download`;
@@ -52,10 +52,11 @@ const Paper = () => {
   const handleDownload = (e) => {
     e.preventDefault();
 
-    const adLink =
-      "https://www.effectiveratecpm.com/dzbcv01i?key=a7b8b276ac02f839505afee4c8ed017f";
-
-    window.open(adLink, "_blank");
+    const script = document.createElement("script");
+    script.src =
+      "//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js"; // Replace with your Adsterra script URL
+    script.async = true;
+    document.body.appendChild(script);
 
     setTimeout(() => {
       router.push(download);

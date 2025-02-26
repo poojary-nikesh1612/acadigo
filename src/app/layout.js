@@ -1,8 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Rightbar from "@/components/Rightbar";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 const geistSans = Geist({
@@ -41,6 +38,7 @@ export default function RootLayout({ children }) {
         {children}
         <Analytics />
         <Toaster />
+        <script type='text/javascript' src='//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js'></script>
       </body>
     </html>
   );

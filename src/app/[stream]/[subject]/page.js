@@ -71,10 +71,11 @@ const Subject = () => {
   const handleDownload = (e, download) => {
     e.preventDefault();
 
-    const adLink =
-      "https://www.effectiveratecpm.com/dzbcv01i?key=a7b8b276ac02f839505afee4c8ed017f";
-
-    window.open(adLink, "_blank");
+    const script = document.createElement("script");
+    script.src =
+      "//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js"; // Replace with your Adsterra script URL
+    script.async = true;
+    document.body.appendChild(script);
 
     setTimeout(() => {
       router.push(download);
@@ -101,11 +102,9 @@ const Subject = () => {
         </div>
       </div>
     );
-  } 
-  else if (papers.length === 0) {
+  } else if (papers.length === 0) {
     return notFound();
-  } 
-  else {
+  } else {
     return (
       <div>
         <Head>
