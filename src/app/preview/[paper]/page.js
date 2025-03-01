@@ -4,11 +4,21 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Rightbar from "@/components/Rightbar";
 import { CloudDownload } from "lucide-react";
-import Link from "next/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Head from "next/head";
 import React from "react";
 import { useEffect } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Paper = () => {
   let { paper } = useParams();
@@ -104,13 +114,37 @@ const Paper = () => {
           ></iframe>
           <div className="flex justify-center mt-5 h-[10%]">
             <div className="w-[96%]">
-              <button
-                className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg"
-                onClick={handleDownload}
-              >
-                Download
-                <CloudDownload size={24} />
-              </button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <button className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg">
+                    Download
+                    <CloudDownload size={24} />
+                  </button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="text-red-600">
+                      {" "}
+                      Please Upload Your Previous Exam Paper
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Your contribution can make exam preparation easier for
+                      upcoming students!
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel onClick={() => router.push(download)}>
+                      No
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      className="bg-blue-600 hover:bg-blue-700"
+                      onClick={() => router.push("/upload-resources")}
+                    >
+                      Upload
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>

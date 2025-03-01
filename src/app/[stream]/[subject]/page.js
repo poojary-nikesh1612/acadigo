@@ -11,6 +11,17 @@ import Link from "next/link";
 import { notFound, useParams, useRouter } from "next/navigation";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Subject = () => {
   const streams = ["arts", "commerce", "science", "languages", "other"];
@@ -67,19 +78,6 @@ const Subject = () => {
       name: "Acadigo",
       url: "https://yourwebsite.com",
     },
-  };
-  const handleDownload = (e, download) => {
-    e.preventDefault();
-
-    const script = document.createElement("script");
-    script.src =
-      "//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js"; // Replace with your Adsterra script URL
-    script.async = true;
-    document.body.appendChild(script);
-
-    setTimeout(() => {
-      router.push(download);
-    }, 3000);
   };
 
   if (isLoading) {
@@ -167,13 +165,38 @@ const Subject = () => {
                         Preview <Eye size={24} />
                       </button>
                     </Link>
-
-                    <button
-                      className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-6"
-                      onClick={(e) => handleDownload(e, paper.download)}
-                    >
-                      Download <CloudDownload size={24} />
-                    </button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-6">
+                          Download <CloudDownload size={24} />
+                        </button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle className="text-red-600">
+                            {" "}
+                            Please Upload Your Previous Exam Paper
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Your contribution can make exam preparation easier
+                            for upcoming students!
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel
+                            onClick={() => router.push(paper.download)}
+                          >
+                            No
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            className="bg-blue-600 hover:bg-blue-700"
+                            onClick={() => router.push("/upload-resources")}
+                          >
+                            Upload
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </Card>
               ))}
