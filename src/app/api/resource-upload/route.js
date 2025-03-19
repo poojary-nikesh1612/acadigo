@@ -1,7 +1,30 @@
+import mongoose from "mongoose";
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 import { PassThrough } from "stream";
 import path from "path";
+
+const resourceSchema = new mongoose.Schema({
+  ClassName: {
+    type: String,
+    required: true,
+  },
+  subject: {
+    type: String,
+    required: true,
+  },
+  resourceLink: {
+    type: String,
+    required: true,
+  },
+  uploader: {
+    type: String,
+    required: true,
+  },
+});
+
+const Resource =
+  mongoose.models.Resource || mongoose.model("Resource", resourceSchema);
 
 const auth = new google.auth.GoogleAuth({
   keyFile: path.join(process.cwd(), "service-account.json"),
@@ -13,7 +36,9 @@ const drive = google.drive({ version: "v3", auth });
 export async function POST(req) {
   try {
     const formData = await req.formData();
+    const ClassName = formData.get("ClassName");
     const subject = formData.get("subject");
+    const uploader = formData.get("uploader");
     const files = formData.getAll("resource");
 
     if (files.length == 0) {
@@ -25,6 +50,7 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+    await mongoose.connect(process.env.MONGO_URI);
 
     for (const file of files) {
       // Convert file to Buffer
@@ -44,8 +70,19 @@ export async function POST(req) {
           mimeType: file.type,
           body: bufferStream,
         },
+        fields: " webViewLink",
       });
+
+      const newResource = new Resource({
+        ClassName,
+        subject,
+        resourceLink: response.data.webViewLink,
+        uploader,
+      });
+      await newResource.save();
     }
+
+    mongoose.connection.close();
 
     return NextResponse.json(
       {

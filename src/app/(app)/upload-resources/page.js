@@ -16,6 +16,7 @@ import { UploadSchema } from "../../../../schema/upload";
 import axios from "axios";
 import { Loader2, UploadCloud } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const UploadResources = () => {
   const [isUploading, setIsUploading] = useState(false);
@@ -23,15 +24,20 @@ const UploadResources = () => {
   const form = useForm({
     resolver: zodResolver(UploadSchema),
     defaultValues: {
+      ClassName: "",
       subject: "",
+      uploader: "",
       resource: null,
     },
   });
 
   const onSubmit = async (data) => {
+   
     setIsUploading(true);
     const formData = new FormData();
 
+    formData.append("ClassName", data.ClassName);
+    formData.append("uploader", data.uploader === ""?"Anonymous":data.uploader);
     formData.append("subject", data.subject);
 
     for (const file of data.resource) {
@@ -78,11 +84,32 @@ const UploadResources = () => {
             className="space-y-8 flex flex-col  items-center"
           >
             <FormField
+  control={form.control}
+  name="ClassName"
+  render={({ field }) => (
+    <FormItem className="w-full">
+      <FormLabel className='font-bold text-lg'>Class</FormLabel>
+      <FormControl>
+        <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <SelectTrigger className="h-12">
+            <SelectValue placeholder="Select Class" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="II-PUC">II-PUC</SelectItem>
+            <SelectItem value="SSLC">SSLC</SelectItem>
+          </SelectContent>
+        </Select>
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
+            <FormField
               control={form.control}
               name="subject"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Subject</FormLabel>
+                  <FormLabel  className='font-bold text-lg'>Subject</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Enter subject name"
@@ -99,7 +126,7 @@ const UploadResources = () => {
               name="resource"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Upload Files</FormLabel>
+                  <FormLabel  className='font-bold text-lg'>Upload Files</FormLabel>
                   <FormControl>
                     <div>
                       <div className="h-32 border  border-gray-300 rounded-xl flex justify-center items-center cursor-pointer">
@@ -139,7 +166,59 @@ const UploadResources = () => {
                 </FormItem>
               )}
             />
+ <FormField
+  control={form.control}
+  name="showCredit"
+  render={({ field }) => (
+    <FormItem className="w-full mt-4">
+      <FormLabel  className='font-bold text-lg'>Do you want to show your name as credit?</FormLabel>
+      <FormControl>
+        <div className="flex gap-4">
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              value="yes"
+              checked={field.value === "yes"}
+              onChange={() => field.onChange("yes")}
+               
+            />
+            Yes
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              value="no"
+              checked={field.value === "no"}
+              onChange={() => field.onChange("no")}
+            />
+            No
+          </label>
+        </div>
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
 
+{form.watch("showCredit") === "yes" && (
+  <FormField
+    control={form.control}
+    name="uploader"
+    render={({ field }) => (
+      <FormItem className="w-full mt-4">
+        <FormLabel  className='font-bold text-lg'>Enter Your Name</FormLabel>
+        <FormControl>
+          <Input
+            placeholder="Enter your name"
+            {...field}
+            className="h-12"
+          />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+)}
             <Button
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 w-[70%] sm:w-[40%]"
