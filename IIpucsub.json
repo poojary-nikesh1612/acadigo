@@ -1,0 +1,50 @@
+{
+    "arts": [
+      "History",
+      "Economics",
+      "Sociology",
+      "Political Science",
+      "Psychology",
+      "Logic",
+      "Geography",
+      "Education",
+      "Optional Kannada",
+      "Hindustani Music"
+    ],
+    "commerce": [
+      "Accountancy",
+      "Business Studies",
+      "Statistics",
+      "Computer Science"
+    ],
+    "science": [
+      "Chemistry",
+      "Physics",
+      "Mathematics",
+      "Biology",
+      "Geology",
+      "Electronics"
+    ],
+    "languages": [
+      "Kannada",
+      "English",
+      "Hindi",
+      "Sanskrit",
+      "Urdu",
+      "Telugu",
+      "Marathi",
+      "Tamil",
+      "Malayalam",
+      "Arabic",
+      "French"
+    ],
+    "other": [
+      "Information Technology",
+      "Automobile",
+      "Beauty and Wellness",
+      "Retail",
+      "Home Science",
+      "Basic Maths"
+    ]
+  }
+  

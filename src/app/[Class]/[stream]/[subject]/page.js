@@ -24,32 +24,32 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const Subject = () => {
-  const streams = ["arts", "commerce", "science", "languages", "other"];
-  let { stream, subject } = useParams();
+  const Classes = ["sslc", "ii-puc"];
+  let { Class, stream, subject } = useParams();
   const [papers, setPapers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    document.title = `II PUC ${subject.toUpperCase()} - Previous Year Papers & Study Materials`;
+    document.title = `${Class.toUpperCase()} ${subject.toUpperCase()} - Previous Year Papers & Study Materials`;
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         "content",
-        `Download II PUC ${subject} question papers, model papers, and study materials for better exam preparation.`
+        `Download ${Class.toUpperCase()} ${subject} question papers, model papers, and study materials for better exam preparation.`
       );
     document
       .querySelector('meta[name="keywords"]')
       ?.setAttribute(
         "content",
-        `${subject} question papers, II PUC ${subject} previous papers, Karnataka Board, PUC study materials`
+        `${subject} question papers, ${Class.toUpperCase()} ${subject} previous papers, Karnataka Board`
       );
     document
       .querySelector('meta[name="robots"]')
       ?.setAttribute("content", "index, follow");
   }, [subject]);
 
-  if (!streams.includes(stream)) return notFound();
+  if (!Classes.includes(Class)) return notFound();
 
   subject = subject.replace(/%20/g, " ");
 
@@ -67,16 +67,21 @@ const Subject = () => {
     getPapers();
   }, [subject]);
 
+  const getFileId = (url) => {
+    const id = url.split("/d/")[1]?.split("/")[0];
+    return id;
+  };
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `II PUC ${subject} Question Papers`,
-    description: `Download II PUC ${subject} previous year question papers, model papers, and study materials to prepare for Karnataka Board exams.`,
-    url: `https://acadigo.vercel.app/${stream}/${subject}`,
+    name: `${Class.toUpperCase()} ${subject} Question Papers`,
+    description: `Download ${Class.toUpperCase()} ${subject} previous year question papers, model papers, and study materials to prepare for Karnataka Board exams.`,
+    url: `https://acadigo.vercel.app/${Class}/${stream}/${subject}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
-      url: "https://yourwebsite.com",
+      url: "https://acadigo.vercel.app",
     },
   };
 
@@ -84,7 +89,9 @@ const Subject = () => {
     return (
       <div className="flex h-screen w-full flex-col items-center justify-center space-y-6 bg-gray-100 dark:bg-gray-900">
         <Head>
-          <title>Loading - II PUC {subject.toUpperCase()} Papers</title>
+          <title>
+            Loading - ${Class.toUpperCase()} {subject.toUpperCase()} Papers
+          </title>
           <meta name="robots" content="noindex, follow" />
         </Head>
         <div className="flex flex-col space-y-4">
@@ -106,27 +113,27 @@ const Subject = () => {
     return (
       <div>
         <Head>
-          <title>{`II PUC ${subject.toUpperCase()} - Previous Year Papers & Study Materials`}</title>
+          <title>{`${Class.toUpperCase()} ${subject.toUpperCase()} - Previous Year Papers & Study Materials`}</title>
           <meta
             name="description"
-            content={`Download II PUC ${subject} question papers, model papers, and study materials for better exam preparation.`}
+            content={`Download ${Class.toUpperCase()} ${subject} question papers, model papers, and study materials for better exam preparation.`}
           />
           <meta
             name="keywords"
-            content={`${subject} question papers, II PUC ${subject} previous papers, Karnataka Board, PUC study materials`}
+            content={`${subject} question papers, ${Class.toUpperCase()} ${subject} previous papers, Karnataka Board, PUC study materials`}
           />
           <meta name="robots" content="index, follow" />
           <meta
             property="og:title"
-            content={`II PUC ${subject.toUpperCase()} - Download Question Papers`}
+            content={`${Class.toUpperCase()} ${subject.toUpperCase()} - Download Question Papers`}
           />
           <meta
             property="og:description"
-            content={`Get II PUC ${subject} previous question papers and study materials for Karnataka Board exams.`}
+            content={`Get ${Class.toUpperCase()} ${subject} previous question papers and study materials for Karnataka Board exams.`}
           />
           <meta
             property="og:url"
-            content={`https://acadigo.vercel.app/${stream}/${subject}`}
+            content={`https://acadigo.vercel.app/${Class}/${stream}/${subject}`}
           />
           <meta property="og:type" content="website" />
           <script type="application/ld+json">
@@ -138,11 +145,11 @@ const Subject = () => {
         <main className="p-2 sm:p-6 grid grid-cols-1 sm:grid-cols-[65%_auto] gap-4 min-h-[88vh]">
           <section className="border sm:max-h-[98vh] border-gray-400 sm:overflow-auto rounded-lg p-4">
             <h1 className="text-4xl font-bold">
-              II PUC {subject.toUpperCase()}
+              {Class.toUpperCase()} {subject.toUpperCase().replace(/\d+/g, "")}
             </h1>
             <div className="bg-[url(/bg.avif)] mt-4 rounded-lg w-full h-[200px] sm:h-[350px] flex items-center justify-center">
               <div className="text-white max-w-[90%] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
-                {subject.toUpperCase()}
+                {subject.toUpperCase().replace(/\d+/g, "")}
               </div>
             </div>
 
@@ -150,24 +157,27 @@ const Subject = () => {
               {papers.map((paper, index) => (
                 <Card
                   key={index}
-                  className="flex flex-col gap-6 items-center w-full h-[120px] p-2 mt-5 hover:shadow-3xl hover:shadow-blue-700 transition duration-200 ease-in-out border-gray-400"
+                  className="flex flex-col gap-6 items-center w-full min-h-[120px] p-2 mt-5 hover:shadow-3xl hover:shadow-blue-700 transition duration-200 ease-in-out border-gray-400"
                 >
                   <CardTitle className="text-2xl">{paper.title}</CardTitle>
                   <div className="flex justify-between sm:justify-around w-full">
                     <Link
-                      href={`/preview/${
+                      href={`/preview/${Class}/${subject}/${
                         paper.title
                       }?preview=${encodeURIComponent(
                         paper.preview
-                      )}&download=${encodeURIComponent(paper.download)}`}
+                      )}&download=${encodeURIComponent(
+                        "https://drive.google.com/uc?export=download&id=" +
+                          getFileId(paper.preview)
+                      )}`}
                     >
-                      <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-6">
+                      <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2">
                         Preview <Eye size={24} />
                       </button>
                     </Link>
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-6">
+                        <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2">
                           Download <CloudDownload size={24} />
                         </button>
                       </AlertDialogTrigger>
@@ -184,7 +194,12 @@ const Subject = () => {
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel
-                            onClick={() => router.push(paper.download)}
+                            onClick={() =>
+                              router.push(
+                                "https://drive.google.com/uc?export=download&id=" +
+                                  getFileId(paper.preview)
+                              )
+                            }
                           >
                             No
                           </AlertDialogCancel>

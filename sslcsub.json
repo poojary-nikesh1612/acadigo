@@ -1,0 +1,52 @@
+{
+    "first language":[
+        "Kannada01",
+        "English14",
+        "Telugu04",
+        "Hindi06",
+        "Marathi08",
+        "Tamil10",
+        "Urdu12",
+        "English (NCERT)15",
+        "Sanskrit16"
+    ],
+    "second language":[
+        "English31",
+    "Kannada33"
+    ],
+    "third language":[
+        "Hindi (NCERT)60",
+        "Hindi61",
+        "Kannada62",
+        "English63",
+        "Arabic64",
+        "Persian65",
+        "Urdu66",
+        "Sanskrit67",
+        "Konkani68",
+        "Tulu69"
+    ],
+    "core subjects":[
+        "Mathematics81",
+        "Science83",
+        "Social Science85",
+        "Sociology95",
+        "Political Science97",
+        "Hindustani Music28"
+    ],
+    "jts subjects":[
+        "Elements of Electrical Engineering-IV",
+        "Elements of Mechanical Engineering-IV",
+        "Elements of Electronics Engineering-IV",
+        "Programming in ANSI 'C'",
+        "Economics96"
+    ],
+    "nsqf subjects":[
+        "Information Technology86",
+        "Retial87",
+        "Automobile88",
+        "Beauty and Wellness90",
+        "Apparel made ups and Home Furnishing",
+        "Electronics and Hardware"
+    ]
+}

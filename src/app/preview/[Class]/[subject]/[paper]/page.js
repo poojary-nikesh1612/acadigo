@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const Paper = () => {
-  let { paper } = useParams();
+  let { Class, subject, paper } = useParams();
   const searchParams = useSearchParams();
   const preview = decodeURIComponent(searchParams.get("preview"));
   const download = decodeURIComponent(searchParams.get("download"));
@@ -29,18 +29,18 @@ const Paper = () => {
   paper = paper.replace(/%20/g, " ");
 
   useEffect(() => {
-    document.title = `II PUC ${paper} - Question Paper Preview & Download`;
+    document.title = `${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} - Question Paper Preview & Download`;
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         "content",
-        `Preview and download the II PUC ${paper} previous year question paper in PDF format for Karnataka Board exam preparation.`
+        `Preview and download the ${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} previous year question paper in PDF format for Karnataka Board exam preparation.`
       );
     document
       .querySelector('meta[name="keywords"]')
       ?.setAttribute(
         "content",
-        `${paper} question paper, II PUC ${paper} PDF, Karnataka Board, PUC exam papers`
+        `${paper} question paper, ${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} PDF, Karnataka Board, PUC exam papers`
       );
     document
       .querySelector('meta[name="robots"]')
@@ -50,52 +50,40 @@ const Paper = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${paper} - II PUC Question Paper Preview & Download`,
-    description: `Preview and download the II PUC ${paper} previous year question paper in PDF format for better exam preparation.`,
-    url: `https://acadigo.vercel.app/preview/${paper}`,
+    name: `${paper} - ${Class.toUpperCase()} ${subject.toUpperCase()} Question Paper Preview & Download`,
+    description: `Preview and download the ${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} previous year question paper in PDF format for better exam preparation.`,
+    url: `https://acadigo.vercel.app/preview/${Class}/${subject}/${paper}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
-      url: "https://yourwebsite.com",
+      url: "https://acadigo.vercel.app",
     },
   };
-  const handleDownload = (e) => {
-    e.preventDefault();
 
-    const script = document.createElement("script");
-    script.src =
-      "//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js"; // Replace with your Adsterra script URL
-    script.async = true;
-    document.body.appendChild(script);
-
-    setTimeout(() => {
-      router.push(download);
-    }, 3000);
-  };
   return (
     <div>
       <Head>
-        <title>{`II PUC ${paper} - Question Paper Preview & Download`}</title>
+        <title>{`${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} - Question Paper Preview & Download`}</title>
         <meta
           name="description"
-          content={`Preview and download the II PUC ${paper} previous year question paper in PDF format for Karnataka Board exam preparation.`}
+          content={`Preview and download the ${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} previous year question paper in PDF format for Karnataka Board exam preparation.`}
         />
         <meta
           name="keywords"
-          content={`${paper} question paper, II PUC ${paper} PDF, Karnataka Board, PUC exam papers`}
+          content={`${paper} question paper, ${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} PDF, Karnataka Board, PUC exam papers`}
         />
         <meta name="robots" content="index, follow" />
         <meta
           property="og:title"
-          content={`II PUC ${paper} - Download Previous Year Papers`}
+          content={`${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} - Download Previous Year Papers`}
         />
         <meta
           property="og:description"
-          content={`Get II PUC ${paper} question papers and study materials for Karnataka Board exams. Preview and download PDFs easily.`}
+          content={`Get ${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} question papers and study materials for Karnataka Board exams. Preview and download PDFs easily.`}
         />
         <meta
           property="og:url"
-          content={`https://acadigo.vercel.app/preview/${paper}`}
+          content={`https://acadigo.vercel.app/preview/${Class}/${subject}/${paper}`}
         />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">

@@ -2,43 +2,42 @@
 
 import { Search } from "lucide-react";
 import React, { useState } from "react";
-import arts from "/arts.json";
-import commerce from "/commerce.json";
-import science from "/science.json";
-import languages from "/languages.json";
-import other from "/other.json";
+
 import Link from "next/link";
+import IIpucsub from "/IIpucsub.json";
+import sslcsub from "/sslcsub.json";
 
 const Searchbar = () => {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const data = {
-    arts,
-    commerce,
-    science,
-    languages,
-    other,
+  const datasets = {
+    IIpucsub,
+    sslcsub,
   };
 
-  const subjectMap = new Map();
+  const allSubjects = [];
 
-  Object.entries(data).flatMap(([stream, subjects]) =>
-    subjects.map((subject) => {
-      if (!subjectMap.has(subject)) {
-        subjectMap.set(subject, { subject, stream });
-      }
-    })
-  );
-  const allSubjects = Array.from(subjectMap.values());
+  Object.entries(datasets).forEach(([Class, data]) => {
+    Class = Class.replace("sub", "");
+    Object.entries(data).forEach(([stream, subjects]) => {
+      subjects.forEach((subject) => {
+        allSubjects.push({
+          Class,
+          stream,
+          subject,
+        });
+      });
+    });
+  });
 
   const handleSearch = (e) => {
     const value = e.target.value;
     setQuery(value);
 
     if (value.length > 0) {
-      const searchResults = allSubjects.filter((subject) =>
-        subject.subject.toLowerCase().startsWith(value.toLowerCase())
+      const searchResults = allSubjects.filter((Subject) =>
+        Subject.subject.toLowerCase().startsWith(value.toLowerCase())
       );
       setSearchResults(searchResults);
     } else {
@@ -63,14 +62,23 @@ const Searchbar = () => {
               searchResults.map((result, index) => (
                 <Link
                   key={index}
-                  href={`/${result.stream.toLowerCase()}/${result.subject.toLowerCase()}`}
+                  href={`/${result.Class.toLowerCase()}/${result.stream.toLowerCase()}/${result.subject.toLowerCase()}`}
                 >
                   <div className="flex gap-4 items-center p-2 border-b border-gray-400">
                     <div className="bg-[url(/bg.avif)] rounded-lg w-[150px] h-[100px] flex items-center justify-center text-white  text-center">
-                      {result.subject.toUpperCase()}
+                      {result.subject.toUpperCase().replace(/\d+/g, "")}
                     </div>
-                    <div className="text-xl font-bold text-blue-600">
-                      {result.subject}
+                    <div>
+                      <div className="text-xl font-bold text-blue-600">
+                        {result.subject.replace(/\d+/g, "")}
+                      </div>
+                      <div className="text-gray-500 text-sm">
+                        {result.Class.toUpperCase()}(
+                        <span className="text-gray-500 text-xs">
+                          {result.stream}
+                        </span>
+                        )
+                      </div>
                     </div>
                   </div>
                 </Link>

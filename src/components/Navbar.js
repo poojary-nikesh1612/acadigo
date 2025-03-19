@@ -5,6 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
 import Searchbar from "./Searchbar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const menubarRef = useRef(null);
@@ -53,49 +61,104 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/arts"
-                aria-label="2nd PUC Arts"
-              >
-                Arts
-              </Link>
+
+            <li className="hover:text-blue-600 hover:underline">
+              <DropdownMenu>
+                <DropdownMenuTrigger>II PUC</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <Link href="/ii-puc/arts" aria-label="2nd PUC Arts">
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Arts
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/ii-puc/commerce" aria-label="2nd PUC Commerce">
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Commerce
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/ii-puc/science" aria-label="2nd PUC Science">
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Science
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/ii-puc/languages" aria-label="2nd PUC languages">
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Languages
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/ii-puc/other"
+                    aria-label="2nd PUC other subjects"
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Other
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </li>
+            <li className="hover:text-blue-600 hover:underline">
+              <DropdownMenu>
+                <DropdownMenuTrigger>SSLC</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <Link
+                    href="/sslc/first language"
+                    aria-label="SSLC first languages"
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      First Language
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/second language"
+                    aria-label="SSLC second languages"
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Second Language
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/third language"
+                    aria-label="SSLC third languages"
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Third Language
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/core subjects"
+                    aria-label="SSLC Core Subjects"
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Core Subjects
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/jts subjects"
+                    aria-label="SSLC JTS Subjects"
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      JTS Subjects
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/nsqf subjects"
+                    aria-label="SSLC NSQF Subjects"
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      NSQF Subjects
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </li>
             <li>
               <Link
                 className="hover:text-blue-600 hover:underline"
-                href="/commerce"
-                aria-label="2nd PUC Commerce"
-              >
-                Commerce
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/science"
-                aria-label="2nd PUC Science"
-              >
-                Science
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/languages"
-                aria-label="2nd PUC Languages"
-              >
-                Languages
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/other"
+                href="/upload-resources"
                 aria-label="upload question papers"
               >
-                Other
+                Upload Resources
               </Link>
             </li>
           </ul>
@@ -138,61 +201,125 @@ const Navbar = () => {
               <Link
                 className="hover:text-blue-600 hover:underline"
                 href="/"
-                aria-label="Home"
+                aria-label="Acadigo Home Page"
                 onClick={ToggleMenubar}
               >
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/arts"
-                aria-label="2nd PUC Arts"
-                onClick={ToggleMenubar}
-              >
-                Arts
-              </Link>
+
+            <li className="hover:text-blue-600 hover:underline ">
+              <DropdownMenu>
+                <DropdownMenuTrigger>II PUC</DropdownMenuTrigger>
+                <DropdownMenuContent className="ml-5 w-52">
+                  <Link
+                    href="/ii-puc/arts"
+                    aria-label="2nd PUC Arts"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Arts
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/ii-puc/commerce"
+                    aria-label="2nd PUC Commerce"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Commerce
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/ii-puc/science"
+                    aria-label="2nd PUC Science"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Science
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/ii-puc/languages"
+                    aria-label="2nd PUC languages"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Languages
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/ii-puc/other"
+                    aria-label="2nd PUC other subjects"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Other
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/commerce"
-                aria-label="2nd PUC Commerce"
-                onClick={ToggleMenubar}
-              >
-                Commerce
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/science"
-                aria-label="2nd PUC Science"
-                onClick={ToggleMenubar}
-              >
-                Science
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/languages"
-                aria-label="2nd PUC Languages"
-                onClick={ToggleMenubar}
-              >
-                Languages
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/other"
-                aria-label="upload question papers"
-                onClick={ToggleMenubar}
-              >
-                Other
-              </Link>
+            <li className="hover:text-blue-600 hover:underline">
+              <DropdownMenu>
+                <DropdownMenuTrigger>SSLC</DropdownMenuTrigger>
+                <DropdownMenuContent className="ml-5 w-52">
+                  <Link
+                    href="/sslc/first language"
+                    aria-label="SSLC first languages"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      First Language
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/second language"
+                    aria-label="SSLC second languages"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Second Language
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/third language"
+                    aria-label="SSLC third languages"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Third Language
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/core subjects"
+                    aria-label="SSLC Core Subjects"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      Core Subjects
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/jts subjects"
+                    aria-label="SSLC JTS Subjects"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      JTS Subjects
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="/sslc/nsqf subjects"
+                    aria-label="SSLC NSQF Subjects"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      NSQF Subjects
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </li>
             <li>
               <Link

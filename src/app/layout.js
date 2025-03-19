@@ -38,7 +38,10 @@ export default function RootLayout({ children }) {
         {children}
         <Analytics />
         <Toaster />
-        <script type='text/javascript' src='//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js'></script>
+        <script
+          type="text/javascript"
+          src="//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js"
+        ></script>
       </body>
     </html>
   );
