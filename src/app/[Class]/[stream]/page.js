@@ -13,7 +13,7 @@ import { notFound, useParams } from "next/navigation";
 import axios from "axios";
 
 const Stream = () => {
-  const Classes = ["sslc", "ii-puc"];
+  const Classes = ["sslc", "iipuc"];
   let { Class, stream } = useParams();
   const [subjects, setSubjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

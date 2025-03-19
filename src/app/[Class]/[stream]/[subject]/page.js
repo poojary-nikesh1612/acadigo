@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const Subject = () => {
-  const Classes = ["sslc", "ii-puc"];
+  const Classes = ["sslc", "iipuc"];
   let { Class, stream, subject } = useParams();
   const [papers, setPapers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -66,28 +66,28 @@ const Navbar = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger>II PUC</DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <Link href="/ii-puc/arts" aria-label="2nd PUC Arts">
+                  <Link href="/iipuc/arts" aria-label="2nd PUC Arts">
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
                       Arts
                     </DropdownMenuItem>
                   </Link>
-                  <Link href="/ii-puc/commerce" aria-label="2nd PUC Commerce">
+                  <Link href="/iipuc/commerce" aria-label="2nd PUC Commerce">
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
                       Commerce
                     </DropdownMenuItem>
                   </Link>
-                  <Link href="/ii-puc/science" aria-label="2nd PUC Science">
+                  <Link href="/iipuc/science" aria-label="2nd PUC Science">
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
                       Science
                     </DropdownMenuItem>
                   </Link>
-                  <Link href="/ii-puc/languages" aria-label="2nd PUC languages">
+                  <Link href="/iipuc/languages" aria-label="2nd PUC languages">
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
                       Languages
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/ii-puc/other"
+                    href="/iipuc/other"
                     aria-label="2nd PUC other subjects"
                   >
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
@@ -213,7 +213,7 @@ const Navbar = () => {
                 <DropdownMenuTrigger>II PUC</DropdownMenuTrigger>
                 <DropdownMenuContent className="ml-5 w-52">
                   <Link
-                    href="/ii-puc/arts"
+                    href="/iipuc/arts"
                     aria-label="2nd PUC Arts"
                     onClick={ToggleMenubar}
                   >
@@ -222,7 +222,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/ii-puc/commerce"
+                    href="/iipuc/commerce"
                     aria-label="2nd PUC Commerce"
                     onClick={ToggleMenubar}
                   >
@@ -231,7 +231,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/ii-puc/science"
+                    href="/iipuc/science"
                     aria-label="2nd PUC Science"
                     onClick={ToggleMenubar}
                   >
@@ -240,7 +240,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/ii-puc/languages"
+                    href="/iipuc/languages"
                     aria-label="2nd PUC languages"
                     onClick={ToggleMenubar}
                   >
@@ -249,7 +249,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/ii-puc/other"
+                    href="/iipuc/other"
                     aria-label="2nd PUC other subjects"
                     onClick={ToggleMenubar}
                   >
