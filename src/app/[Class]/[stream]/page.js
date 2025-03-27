@@ -60,7 +60,7 @@ const Stream = () => {
     "@type": "WebPage",
     name: `${Class.toUpperCase()} ${stream.toUpperCase()} Question Papers`,
     description: `Download ${Class.toUpperCase()} ${stream.toUpperCase()} previous year question papers, model papers, and study materials to prepare for Karnataka Board exams.`,
-    url: `https://acadigo.vercel.app/${Class}}/${stream}`,
+    url: `https://acadigo.vercel.app/${Class}/${stream}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
@@ -116,7 +116,7 @@ const Stream = () => {
           />
           <meta
             property="og:url"
-            content={`https://acadigo.vercel.app/${Class}}/${stream}`}
+            content={`https://acadigo.vercel.app/${Class}/${stream}`}
           />
           <meta property="og:type" content="website" />
           <script type="application/ld+json">
@@ -129,11 +129,11 @@ const Stream = () => {
           <section>
             <Head>
               <title>
-                {Class.toUpperCase()} {stream.toUpperCase()} - Explore Courses
+                {Class.toUpperCase()} {stream.toUpperCase()} - Explore Subjects
               </title>
               <meta
                 name="description"
-                content={`Discover ${Class.toUpperCase()} ${stream.toUpperCase()} subjects. Explore various courses and enhance your knowledge in arts education.`}
+                content={`Discover ${Class.toUpperCase()} ${stream.toUpperCase()} subjects. Explore various courses and enhance your knowledge in ${stream.toUpperCase()} education.`}
               />
               <meta
                 name="keywords"

@@ -20,7 +20,7 @@ export const metadata = {
     title: "Acadigo | Learn Easily with Expert Resources & Study Materials",
     description:
       "Access the best study materials and exam resources. Prepare smarter with Acadigo.",
-    url: "https://yourwebsite.com",
+    url: "https://acadigo.vercel.app/",
     type: "website",
   },
 };
@@ -37,7 +37,7 @@ export default function Home() {
             <Link href={`/${stream.title.toLowerCase()}`}>
               <Image
                 src={`/${stream.title.toLowerCase()}.png`}
-                alt={`2nd PUC ${stream.title}`}
+                alt={stream.title}
                 className="rounded-lg w-[400px] sm:w-[500px] h-[200px] sm:h-[250px]"
                 width={400}
                 height={250}

@@ -61,7 +61,13 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-
+            <Link
+              className="hover:text-blue-600 hover:underline"
+              href="/kcet"
+              aria-label="upload question papers"
+            >
+              KCET
+            </Link>
             <li className="hover:text-blue-600 hover:underline">
               <DropdownMenu>
                 <DropdownMenuTrigger>II PUC</DropdownMenuTrigger>
@@ -86,10 +92,7 @@ const Navbar = () => {
                       Languages
                     </DropdownMenuItem>
                   </Link>
-                  <Link
-                    href="/iipuc/other"
-                    aria-label="2nd PUC other subjects"
-                  >
+                  <Link href="/iipuc/other" aria-label="2nd PUC other subjects">
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
                       Other
                     </DropdownMenuItem>
@@ -207,6 +210,15 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
+
+            <Link
+              className="hover:text-blue-600 hover:underline"
+              href="/kcet"
+              aria-label="upload question papers"
+              onClick={ToggleMenubar}
+            >
+              KCET
+            </Link>
 
             <li className="hover:text-blue-600 hover:underline ">
               <DropdownMenu>
