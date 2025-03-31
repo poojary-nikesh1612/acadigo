@@ -113,11 +113,12 @@ const Paper = () => {
                   <AlertDialogHeader>
                     <AlertDialogTitle className="text-red-600">
                       {" "}
-                      Please Upload Your Previous Exam Paper
+                      Please Share Any Useful Study Materials If You Have
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                      Your contribution can make exam preparation easier for
-                      upcoming students!
+                      If you have any past papers, notes, or helpful resources,
+                      please upload them to support other students in their exam
+                      preparation.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>

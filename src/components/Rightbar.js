@@ -95,14 +95,14 @@ const Rightbar = () => {
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormLabel className="text-2xl font-bold text-center text-red-600">
-                    Submit Your Feedback
+                    Contact Us
                   </FormLabel>
                   <FormControl>
                     <textarea
                       className="w-full p-2 border rounded-md"
                       rows="4"
                       {...field}
-                      placeholder="Enter your feedback..."
+                      placeholder="Your message here..."
                     />
                   </FormControl>
                   <FormMessage />

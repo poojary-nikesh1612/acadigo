@@ -34,7 +34,7 @@ const Navbar = () => {
         role="navigation"
         aria-label="Main Navigation"
       >
-        <div className="flex justify-between items-center px-3 sm:px-5 py-2 border border-gray-400 shadow-md w-[96vw] rounded-xl">
+        <div className="flex justify-between gap-4 items-center px-3 sm:px-5 py-2 border border-gray-400 shadow-md w-[96vw] rounded-xl">
           <Menu
             onClick={ToggleMenubar}
             className="sm:hidden cursor-pointer"
@@ -61,13 +61,24 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <Link
-              className="hover:text-blue-600 hover:underline"
-              href="/kcet"
-              aria-label="upload question papers"
-            >
-              KCET
-            </Link>
+            <li>
+              <Link
+                className="hover:text-blue-600 hover:underline"
+                href="/kcet"
+                aria-label="upload question papers"
+              >
+                KCET
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:text-blue-600 hover:underline"
+                href="/neet"
+                aria-label="upload question papers"
+              >
+                NEET
+              </Link>
+            </li>
             <li className="hover:text-blue-600 hover:underline">
               <DropdownMenu>
                 <DropdownMenuTrigger>II PUC</DropdownMenuTrigger>
@@ -210,15 +221,27 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
+            <li>
+              <Link
+                className="hover:text-blue-600 hover:underline"
+                href="/kcet"
+                aria-label="upload question papers"
+                onClick={ToggleMenubar}
+              >
+                KCET
+              </Link>
+            </li>
 
-            <Link
-              className="hover:text-blue-600 hover:underline"
-              href="/kcet"
-              aria-label="upload question papers"
-              onClick={ToggleMenubar}
-            >
-              KCET
-            </Link>
+            <li>
+              <Link
+                className="hover:text-blue-600 hover:underline"
+                href="/neet"
+                aria-label="upload question papers"
+                onClick={ToggleMenubar}
+              >
+                NEET
+              </Link>
+            </li>
 
             <li className="hover:text-blue-600 hover:underline ">
               <DropdownMenu>

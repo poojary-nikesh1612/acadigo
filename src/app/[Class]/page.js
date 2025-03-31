@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const Subject = () => {
-  const Classes = ["kcet"];
+  const Classes = ["kcet", "neet"];
   let { Class } = useParams();
   const [papers, setPapers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
