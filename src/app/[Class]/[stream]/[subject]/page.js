@@ -11,21 +11,13 @@ import Link from "next/link";
 import { notFound, useParams, useRouter } from "next/navigation";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+
+import { useToast } from "@/hooks/use-toast";
 
 const Subject = () => {
   const Classes = ["sslc", "iipuc", "kcet"];
   let { Class, stream, subject } = useParams();
+   const { toast } = useToast();
   const [papers, setPapers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
@@ -70,6 +62,19 @@ const Subject = () => {
   const getFileId = (url) => {
     const id = url.split("/d/")[1]?.split("/")[0];
     return id;
+  };
+
+  const handleDownload = (paper) => {
+    router.push(
+      "https://drive.google.com/uc?export=download&id=" +
+        getFileId(paper.preview)
+    );
+
+    toast({
+      title: "Your Download Has Started",
+      description:
+        "Your file is now downloading. It will complete in a few seconds.",
+    });
   };
 
   const structuredData = {
@@ -175,43 +180,12 @@ const Subject = () => {
                         Preview <Eye size={24} />
                       </button>
                     </Link>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2">
-                          Download <CloudDownload size={24} />
-                        </button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle className="text-red-600">
-                            {" "}
-                            Please Upload Your Previous Exam Paper
-                          </AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Your contribution can make exam preparation easier
-                            for upcoming students!
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel
-                            onClick={() =>
-                              router.push(
-                                "https://drive.google.com/uc?export=download&id=" +
-                                  getFileId(paper.preview)
-                              )
-                            }
-                          >
-                            No
-                          </AlertDialogCancel>
-                          <AlertDialogAction
-                            className="bg-blue-600 hover:bg-blue-700"
-                            onClick={() => router.push("/upload-resources")}
-                          >
-                            Upload
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
+                   <button
+                                         className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2"
+                                         onClick={() => handleDownload(paper)}
+                                       >
+                                         Download <CloudDownload size={24} />
+                                       </button>
                   </div>
                 </Card>
               ))}

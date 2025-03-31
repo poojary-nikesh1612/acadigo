@@ -8,21 +8,13 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Head from "next/head";
 import React from "react";
 import { useEffect } from "react";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+
+import { useToast } from "@/hooks/use-toast";
 
 const Paper = () => {
   let { Class, subject, paper } = useParams();
   const searchParams = useSearchParams();
+  const { toast } = useToast();
   const preview = decodeURIComponent(searchParams.get("preview"));
   const download = decodeURIComponent(searchParams.get("download"));
   const router = useRouter();
@@ -46,6 +38,16 @@ const Paper = () => {
       .querySelector('meta[name="robots"]')
       ?.setAttribute("content", "index, follow");
   }, [paper]);
+
+  const handleDownload = () => {
+    router.push(download);
+
+    toast({
+      title: "Your Download Has Started",
+      description:
+        "Your file is now downloading. It will complete in a few seconds.",
+    });
+  };
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -102,38 +104,13 @@ const Paper = () => {
           ></iframe>
           <div className="flex justify-center mt-5 h-[10%]">
             <div className="w-[96%]">
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <button className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg">
+            <button
+                    className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg"
+                    onClick={() => handleDownload()}
+                  >
                     Download
                     <CloudDownload size={24} />
                   </button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle className="text-red-600">
-                      {" "}
-                      Please Share Any Useful Study Materials If You Have
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      If you have any past papers, notes, or helpful resources,
-                      please upload them to support other students in their exam
-                      preparation.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel onClick={() => router.push(download)}>
-                      No
-                    </AlertDialogCancel>
-                    <AlertDialogAction
-                      className="bg-blue-600 hover:bg-blue-700"
-                      onClick={() => router.push("/upload-resources")}
-                    >
-                      Upload
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
             </div>
           </div>
         </div>
