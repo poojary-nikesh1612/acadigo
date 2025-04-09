@@ -2,44 +2,69 @@ import IIpucsub from "/IIpucsub.json";
 import sslcsub from "/sslcsub.json";
 
 export async function GET() {
-  const baseUrl = " http://localhost:3000";
+  const baseUrl = "https://acadigo.vercel.app";
 
-  const allRoutes = [
-    "/",
+  const allRoutes = [];
+
+  const addRoute = (
+    url,
+    priority = "0.5",
+    changefreq = "monthly",
+    lastmod = new Date()
+  ) => {
+    allRoutes.push({ url, priority, changefreq, lastmod });
+  };
+
+  // Homepage
+  addRoute("/", "1.0", "weekly");
+
+  // Static pages
+  const staticPages = [
     "/iipuc",
     "/sslc",
     "/upload-resources",
     "/kcet",
     "/neet",
   ];
+  staticPages.forEach((path) => addRoute(path, "0.8", "monthly"));
 
+  // II PUC
   for (const stream in IIpucsub) {
-    const route = `/iipuc/${encodeURIComponent(stream)}`;
-    allRoutes.push(route);
+    addRoute(`/iipuc/${encodeURIComponent(stream)}`, "0.7", "monthly");
+
     IIpucsub[stream].forEach((subject) => {
-      const route = `/iipuc/${stream}/${encodeURIComponent(subject)}`;
-      allRoutes.push(route);
+      addRoute(
+        `/iipuc/${encodeURIComponent(stream)}/${encodeURIComponent(subject)}`,
+        "0.6",
+        "yearly"
+      );
     });
   }
 
+  // SSLC
   for (const stream in sslcsub) {
-    const route = `/sslc/${encodeURIComponent(stream)}`;
-    allRoutes.push(route);
+    addRoute(`/sslc/${encodeURIComponent(stream)}`, "0.7", "monthly");
+
     sslcsub[stream].forEach((subject) => {
-      const route = `/sslc/${encodeURIComponent(stream)}/${encodeURIComponent(
-        subject
-      )}`;
-      allRoutes.push(route);
+      addRoute(
+        `/sslc/${encodeURIComponent(stream)}/${encodeURIComponent(subject)}`,
+        "0.6",
+        "yearly"
+      );
     });
   }
 
+  // Sitemap XML string
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
 ${allRoutes
   .map(
-    (url) => `
+    ({ url, priority, changefreq, lastmod }) => `
   <url>
     <loc>${baseUrl}${url}</loc>
+    <lastmod>${lastmod.toISOString().split("T")[0]}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
   </url>`
   )
   .join("")}
