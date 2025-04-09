@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://acadigo.vercel.app/sitemap.xml
