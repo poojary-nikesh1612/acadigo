@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const Subject = () => {
-  const Classes = ["kcet", "neet"];
+  const Classes = ["kcet", "neet","comedk"];
   let { Class } = useParams();
   const { toast } = useToast();
   const [papers, setPapers] = useState([]);

@@ -9,8 +9,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -61,23 +59,28 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/kcet"
-                aria-label="upload question papers"
-              >
-                KCET
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/neet"
-                aria-label="upload question papers"
-              >
-                NEET
-              </Link>
+
+            <li className="hover:text-blue-600 hover:underline">
+              <DropdownMenu>
+                <DropdownMenuTrigger>EXAMS</DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <Link href="/comedk" aria-label="COMEDK Exam papers">
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      COMEDK
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/neet" aria-label="NEET Exam papers">
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      NEET
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/kcet" aria-label="KCET Exam papers">
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      KCET
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </li>
             <li className="hover:text-blue-600 hover:underline">
               <DropdownMenu>
@@ -221,28 +224,41 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/kcet"
-                aria-label="upload question papers"
-                onClick={ToggleMenubar}
-              >
-                KCET
-              </Link>
-            </li>
 
-            <li>
-              <Link
-                className="hover:text-blue-600 hover:underline"
-                href="/neet"
-                aria-label="upload question papers"
-                onClick={ToggleMenubar}
-              >
-                NEET
-              </Link>
+            <li className="hover:text-blue-600 hover:underline ">
+              <DropdownMenu>
+                <DropdownMenuTrigger>EXAMS</DropdownMenuTrigger>
+                <DropdownMenuContent className="ml-5 w-52">
+                  <Link
+                    href="/comedk"
+                    aria-label="COMEDK exam papers"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      COMEDK
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="neet"
+                    aria-label="NEET exam papers"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      NEET
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link
+                    href="KCET"
+                    aria-label="KCET exam papers"
+                    onClick={ToggleMenubar}
+                  >
+                    <DropdownMenuItem className="text-base font-bold cursor-pointer">
+                      KCET
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </li>
-
             <li className="hover:text-blue-600 hover:underline ">
               <DropdownMenu>
                 <DropdownMenuTrigger>II PUC</DropdownMenuTrigger>
