@@ -7,9 +7,11 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import IIpuc from "/IIpuc.json";
+import Comment from "@/components/Comment";
 
 export const metadata = {
-  title: "Acadigo | 2nd PUC Study Materials | Previous Year Papers & Notes - Acadigo",
+  title:
+    "Acadigo | 2nd PUC Study Materials | Previous Year Papers & Notes - Acadigo",
   description:
     "Get the best 2nd PUC study materials, previous year question papers, and expert notes. Prepare efficiently for exams with Acadigo's resources.",
   keywords:
@@ -68,6 +70,7 @@ export default function Home() {
           </div>
         </Card>
       ))}
+      <Comment page_id="iipuc" />
     </div>
   );
 }

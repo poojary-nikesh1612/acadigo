@@ -11,13 +11,13 @@ import Link from "next/link";
 import { notFound, useParams, useRouter } from "next/navigation";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-
+import Comment from "@/components/Comment";
 import { useToast } from "@/hooks/use-toast";
 
 const Subject = () => {
   const Classes = ["sslc", "iipuc", "kcet"];
   let { Class, stream, subject } = useParams();
-   const { toast } = useToast();
+  const { toast } = useToast();
   const [papers, setPapers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
@@ -148,50 +148,53 @@ const Subject = () => {
 
         <Navbar />
         <main className="p-2 sm:p-6 grid grid-cols-1 sm:grid-cols-[65%_auto] gap-4 min-h-[88vh]">
-          <section className="border sm:max-h-[98vh] border-gray-400 sm:overflow-auto rounded-lg p-4">
-            <h1 className="text-4xl font-bold">
-              {Class.toUpperCase()} {subject.toUpperCase().replace(/\d+/g, "")}
-            </h1>
-            <div className="bg-[url(/bg.avif)] mt-4 rounded-lg w-full h-[200px] sm:h-[350px] flex items-center justify-center">
-              <div className="text-white max-w-[90%] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
+          <div>
+            <section className="border sm:max-h-[98vh] border-gray-400 sm:overflow-auto rounded-lg p-4">
+              <h1 className="text-4xl font-bold">
+                {Class.toUpperCase()}{" "}
                 {subject.toUpperCase().replace(/\d+/g, "")}
+              </h1>
+              <div className="bg-[url(/bg.avif)] mt-4 rounded-lg w-full h-[200px] sm:h-[350px] flex items-center justify-center">
+                <div className="text-white max-w-[90%] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
+                  {subject.toUpperCase().replace(/\d+/g, "")}
+                </div>
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
-              {papers.map((paper, index) => (
-                <Card
-                  key={index}
-                  className="flex flex-col gap-6 items-center w-full min-h-[120px] p-2 mt-5 hover:shadow-3xl hover:shadow-blue-700 transition duration-200 ease-in-out border-gray-400"
-                >
-                  <CardTitle className="text-2xl">{paper.title}</CardTitle>
-                  <div className="flex justify-between sm:justify-around w-full">
-                    <Link
-                      href={`/preview/${Class}/${subject}/${
-                        paper.title
-                      }?preview=${encodeURIComponent(
-                        paper.preview
-                      )}&download=${encodeURIComponent(
-                        "https://drive.google.com/uc?export=download&id=" +
-                          getFileId(paper.preview)
-                      )}`}
-                    >
-                      <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2">
-                        Preview <Eye size={24} />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+                {papers.map((paper, index) => (
+                  <Card
+                    key={index}
+                    className="flex flex-col gap-6 items-center w-full min-h-[120px] p-2 mt-5 hover:shadow-3xl hover:shadow-blue-700 transition duration-200 ease-in-out border-gray-400"
+                  >
+                    <CardTitle className="text-2xl">{paper.title}</CardTitle>
+                    <div className="flex justify-between sm:justify-around w-full">
+                      <Link
+                        href={`/preview/${Class}/${subject}/${
+                          paper.title
+                        }?preview=${encodeURIComponent(
+                          paper.preview
+                        )}&download=${encodeURIComponent(
+                          "https://drive.google.com/uc?export=download&id=" +
+                            getFileId(paper.preview)
+                        )}`}
+                      >
+                        <button className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2">
+                          Preview <Eye size={24} />
+                        </button>
+                      </Link>
+                      <button
+                        className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2"
+                        onClick={() => handleDownload(paper)}
+                      >
+                        Download <CloudDownload size={24} />
                       </button>
-                    </Link>
-                   <button
-                                         className="flex gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 px-4 sm:px-8 lg:px-4 xl:px-8 rounded-lg mb-2"
-                                         onClick={() => handleDownload(paper)}
-                                       >
-                                         Download <CloudDownload size={24} />
-                                       </button>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </section>
-
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </section>
+            <Comment page_id={`${Class}/${subject}`} />
+          </div>
           <Rightbar />
         </main>
         <Footer />

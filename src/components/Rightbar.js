@@ -24,6 +24,7 @@ import { feedbackSchema } from "../../schema/feedback";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
 import axios from "axios";
+import { Textarea } from "./ui/textarea";
 
 const Rightbar = () => {
   const [isExpanded, setisExpanded] = useState(false);
@@ -98,7 +99,7 @@ const Rightbar = () => {
                     Contact Us
                   </FormLabel>
                   <FormControl>
-                    <textarea
+                    <Textarea
                       className="w-full p-2 border rounded-md"
                       rows="4"
                       {...field}

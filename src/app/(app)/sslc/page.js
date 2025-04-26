@@ -7,9 +7,11 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import sslc from "/sslc.json";
+import Comment from "@/components/Comment";
 
 export const metadata = {
-  title: "Acadigo | SSLC Study Materials, Previous Year Papers & Exam Resources",
+  title:
+    "Acadigo | SSLC Study Materials, Previous Year Papers & Exam Resources",
   description:
     "Find high-quality SSLC study materials, previous year question papers, and expert resources to excel in your exams. Prepare smarter with Acadigo.",
   keywords:
@@ -61,6 +63,7 @@ export default function Home() {
           </div>
         </Card>
       ))}
+     <Comment page_id='sslc'/>
     </div>
   );
 }

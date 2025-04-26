@@ -3,6 +3,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Rightbar from "@/components/Rightbar";
+import Comment from "@/components/Comment";
 
 import { Card, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
@@ -126,65 +127,68 @@ const Stream = () => {
 
         <Navbar />
         <main className="p-2 sm:p-6 grid grid-cols-1 sm:grid-cols-[65%_auto] gap-4 min-h-[88vh]">
-          <section>
-            <Head>
-              <title>
-                {Class.toUpperCase()} {stream.toUpperCase()} - Explore Subjects
-              </title>
-              <meta
-                name="description"
-                content={`Discover ${Class.toUpperCase()} ${stream.toUpperCase()} subjects. Explore various courses and enhance your knowledge in ${stream.toUpperCase()} education.`}
-              />
-              <meta
-                name="keywords"
-                content={`${Class.toUpperCase()} ${stream.toUpperCase()}, ${stream.toUpperCase()} Subjects, ${stream.toUpperCase()} Courses, ${Class.toUpperCase()} Syllabus`}
-              />
-              <meta name="author" content="Acadigo" />
-              <meta
-                property="og:title"
-                content={`${Class.toUpperCase()} ${stream.toUpperCase()} Subjects - Explore Courses`}
-              />
-              <meta
-                property="og:description"
-                content={`Explore a wide range of ${Class.toUpperCase()} ${stream.toUpperCase()} subjects and courses to boost your knowledge and career opportunities.`}
-              />
-              <meta property="og:type" content="website" />
-            </Head>
-            <div className="border sm:max-h-[98vh] border-gray-400 sm:overflow-auto rounded-lg p-4">
-              <h1 className="text-4xl font-bold">
-                {" "}
-                {Class.toUpperCase()} {stream.toUpperCase()}
-              </h1>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                {subjects.map((subject, index) => (
-                  <Card
-                    key={index}
-                    className="flex flex-col gap-2 items-center w-full min-h-[300px] p-2 hover:shadow-3xl hover:shadow-blue-700 transition duration-200 ease-in-out border-gray-400"
-                  >
-                    <Link
-                      href={`/${Class.toLowerCase()}/${stream.toLowerCase()}/${subject.toLowerCase()}`}
-                      className="bg-[url(/bg.avif)] rounded-lg w-full h-[85%] flex items-center justify-center"
+          <div>
+            <section>
+              <Head>
+                <title>
+                  {Class.toUpperCase()} {stream.toUpperCase()} - Explore
+                  Subjects
+                </title>
+                <meta
+                  name="description"
+                  content={`Discover ${Class.toUpperCase()} ${stream.toUpperCase()} subjects. Explore various courses and enhance your knowledge in ${stream.toUpperCase()} education.`}
+                />
+                <meta
+                  name="keywords"
+                  content={`${Class.toUpperCase()} ${stream.toUpperCase()}, ${stream.toUpperCase()} Subjects, ${stream.toUpperCase()} Courses, ${Class.toUpperCase()} Syllabus`}
+                />
+                <meta name="author" content="Acadigo" />
+                <meta
+                  property="og:title"
+                  content={`${Class.toUpperCase()} ${stream.toUpperCase()} Subjects - Explore Courses`}
+                />
+                <meta
+                  property="og:description"
+                  content={`Explore a wide range of ${Class.toUpperCase()} ${stream.toUpperCase()} subjects and courses to boost your knowledge and career opportunities.`}
+                />
+                <meta property="og:type" content="website" />
+              </Head>
+              <div className="border sm:max-h-[98vh] border-gray-400 sm:overflow-auto rounded-lg p-4">
+                <h1 className="text-4xl font-bold">
+                  {" "}
+                  {Class.toUpperCase()} {stream.toUpperCase()}
+                </h1>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                  {subjects.map((subject, index) => (
+                    <Card
+                      key={index}
+                      className="flex flex-col gap-2 items-center w-full min-h-[300px] p-2 hover:shadow-3xl hover:shadow-blue-700 transition duration-200 ease-in-out border-gray-400"
                     >
-                      <div className="text-white max-w-[90%] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
-                        {subject.replace(/\d+/g, "")}
-                      </div>
-                    </Link>
-
-                    <div>
                       <Link
                         href={`/${Class.toLowerCase()}/${stream.toLowerCase()}/${subject.toLowerCase()}`}
+                        className="bg-[url(/bg.avif)] rounded-lg w-full h-[85%] flex items-center justify-center"
                       >
-                        <CardTitle className="text-2xl text-blue-600 hover:text-blue-700 relative inline-block after:content-[''] after:absolute after:w-0 after:h-[3px] after:bottom-[1px] after:left-1/2 after:bg-blue-700 after:transition-[width_left] after:duration-200 hover:after:w-full hover:after:left-0">
+                        <div className="text-white max-w-[90%] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
                           {subject.replace(/\d+/g, "")}
-                        </CardTitle>
+                        </div>
                       </Link>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
 
+                      <div>
+                        <Link
+                          href={`/${Class.toLowerCase()}/${stream.toLowerCase()}/${subject.toLowerCase()}`}
+                        >
+                          <CardTitle className="text-2xl text-blue-600 hover:text-blue-700 relative inline-block after:content-[''] after:absolute after:w-0 after:h-[3px] after:bottom-[1px] after:left-1/2 after:bg-blue-700 after:transition-[width_left] after:duration-200 hover:after:w-full hover:after:left-0">
+                            {subject.replace(/\d+/g, "")}
+                          </CardTitle>
+                        </Link>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </section>
+            <Comment page_id={`${Class}/${stream}`} />
+          </div>
           <Rightbar />
         </main>
         <Footer />

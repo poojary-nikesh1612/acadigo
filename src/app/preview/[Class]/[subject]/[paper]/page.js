@@ -8,7 +8,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Head from "next/head";
 import React from "react";
 import { useEffect } from "react";
-
+import Comment from "@/components/Comment";
 import { useToast } from "@/hooks/use-toast";
 
 const Paper = () => {
@@ -95,24 +95,27 @@ const Paper = () => {
 
       <Navbar />
       <div className="p-2 sm:p-6 grid grid-cols-1 sm:grid-cols-[65%_auto] gap-4 min-h-[88vh]">
-        <div className="border h-[600px] sm:h-screen border-gray-300 rounded-lg px-1 sm:px-4 py-4">
-          <h1 className="text-3xl font-bold mb-4">{paper}</h1>
-          <iframe
-            src={preview}
-            className="w-full h-[80%] rounded-lg border-4 border-black"
-            allow="autoplay"
-          ></iframe>
-          <div className="flex justify-center mt-5 h-[10%]">
-            <div className="w-[96%]">
-            <button
-                    className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg"
-                    onClick={() => handleDownload()}
-                  >
-                    Download
-                    <CloudDownload size={24} />
-                  </button>
+        <div>
+          <div className="border h-[600px] sm:h-screen border-gray-300 rounded-lg px-1 sm:px-4 py-4">
+            <h1 className="text-3xl font-bold mb-4">{paper}</h1>
+            <iframe
+              src={preview}
+              className="w-full h-[80%] rounded-lg border-4 border-black"
+              allow="autoplay"
+            ></iframe>
+            <div className="flex justify-center mt-5 h-[10%]">
+              <div className="w-[96%]">
+                <button
+                  className="flex w-full gap-2 items-center justify-center bg-blue-600 text-white hover:bg-blue-700 text-lg font-bold py-2 rounded-lg"
+                  onClick={() => handleDownload()}
+                >
+                  Download
+                  <CloudDownload size={24} />
+                </button>
+              </div>
             </div>
           </div>
+          <Comment page_id={`preview/${Class}/${subject}/${paper}`} />
         </div>
         <Rightbar />
       </div>
