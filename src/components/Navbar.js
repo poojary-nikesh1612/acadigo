@@ -119,7 +119,7 @@ const Navbar = () => {
                 <DropdownMenuTrigger>SSLC</DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <Link
-                    href="/sslc/first language"
+                    href="/sslc/first-language"
                     aria-label="SSLC first languages"
                   >
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
@@ -127,7 +127,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/second language"
+                    href="/sslc/second-language"
                     aria-label="SSLC second languages"
                   >
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
@@ -135,7 +135,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/third language"
+                    href="/sslc/third-language"
                     aria-label="SSLC third languages"
                   >
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
@@ -143,7 +143,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/core subjects"
+                    href="/sslc/core-subjects"
                     aria-label="SSLC Core Subjects"
                   >
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
@@ -151,7 +151,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/jts subjects"
+                    href="/sslc/jts-subjects"
                     aria-label="SSLC JTS Subjects"
                   >
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
@@ -159,7 +159,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/nsqf subjects"
+                    href="/sslc/nsqf-subjects"
                     aria-label="SSLC NSQF Subjects"
                   >
                     <DropdownMenuItem className="text-base font-bold cursor-pointer">
@@ -316,7 +316,7 @@ const Navbar = () => {
                 <DropdownMenuTrigger>SSLC</DropdownMenuTrigger>
                 <DropdownMenuContent className="ml-5 w-52">
                   <Link
-                    href="/sslc/first language"
+                    href="/sslc/first-language"
                     aria-label="SSLC first languages"
                     onClick={ToggleMenubar}
                   >
@@ -325,7 +325,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/second language"
+                    href="/sslc/second-language"
                     aria-label="SSLC second languages"
                     onClick={ToggleMenubar}
                   >
@@ -334,7 +334,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/third language"
+                    href="/sslc/third-language"
                     aria-label="SSLC third languages"
                     onClick={ToggleMenubar}
                   >
@@ -343,7 +343,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/core subjects"
+                    href="/sslc/core-subjects"
                     aria-label="SSLC Core Subjects"
                     onClick={ToggleMenubar}
                   >
@@ -352,7 +352,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/jts subjects"
+                    href="/sslc/jts-subjects"
                     aria-label="SSLC JTS Subjects"
                     onClick={ToggleMenubar}
                   >
@@ -361,7 +361,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="/sslc/nsqf subjects"
+                    href="/sslc/nsqf-subjects"
                     aria-label="SSLC NSQF Subjects"
                     onClick={ToggleMenubar}
                   >

@@ -10,15 +10,18 @@ import React from "react";
 import { useEffect } from "react";
 import Comment from "@/components/Comment";
 import { useToast } from "@/hooks/use-toast";
+import { slugify, unSlugify } from "@/lib/utils";
 
 const Paper = () => {
   let { Class, subject, paper } = useParams();
   const searchParams = useSearchParams();
   const { toast } = useToast();
+
   const preview = decodeURIComponent(searchParams.get("preview"));
   const download = decodeURIComponent(searchParams.get("download"));
   const router = useRouter();
-  paper = paper.replace(/%20/g, " ");
+  paper = unSlugify(paper);
+  subject = unSlugify(subject);
 
   useEffect(() => {
     document.title = `${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} - Question Paper Preview & Download`;
@@ -54,7 +57,9 @@ const Paper = () => {
     "@type": "WebPage",
     name: `${paper} - ${Class.toUpperCase()} ${subject.toUpperCase()} Question Paper Preview & Download`,
     description: `Preview and download the ${Class.toUpperCase()} ${subject.toUpperCase()} ${paper} previous year question paper in PDF format for better exam preparation.`,
-    url: `https://acadigo.vercel.app/preview/${Class}/${subject}/${paper}`,
+    url: `https://acadigo.vercel.app/preview/${Class}/${slugify(
+      subject
+    )}/${slugify(paper)}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
@@ -85,7 +90,9 @@ const Paper = () => {
         />
         <meta
           property="og:url"
-          content={`https://acadigo.vercel.app/preview/${Class}/${subject}/${paper}`}
+          content={`https://acadigo.vercel.app/preview/${Class}/${slugify(
+            subject
+          )}/${slugify(paper)}`}
         />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">

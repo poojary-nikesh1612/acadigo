@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import IIpucsub from "/IIpucsub.json";
 import sslcsub from "/sslcsub.json";
+import { slugify } from "@/lib/utils";
 
 const Searchbar = () => {
   const [query, setQuery] = useState("");
@@ -62,7 +63,9 @@ const Searchbar = () => {
               searchResults.map((result, index) => (
                 <Link
                   key={index}
-                  href={`/${result.Class.toLowerCase()}/${result.stream.toLowerCase()}/${result.subject.toLowerCase()}`}
+                  href={`/${result.Class.toLowerCase()}/${slugify(
+                    result.stream.toLowerCase()
+                  )}/${slugify(result.subject.toLowerCase())}`}
                 >
                   <div className="flex gap-4 items-center p-2 border-b border-gray-400">
                     <div className="bg-[url(/bg.avif)] rounded-lg w-[150px] h-[100px] flex items-center justify-center text-white  text-center">

@@ -13,6 +13,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Comment from "@/components/Comment";
 import { useToast } from "@/hooks/use-toast";
+import { slugify, unSlugify } from "@/lib/utils";
 
 const Subject = () => {
   const Classes = ["sslc", "iipuc", "kcet"];
@@ -21,6 +22,8 @@ const Subject = () => {
   const [papers, setPapers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  stream = unSlugify(stream);
+  subject = unSlugify(subject);
 
   useEffect(() => {
     document.title = `${Class.toUpperCase()} ${subject.toUpperCase()} - Previous Year Papers & Study Materials`;
@@ -42,8 +45,6 @@ const Subject = () => {
   }, [subject]);
 
   if (!Classes.includes(Class)) return notFound();
-
-  subject = subject.replace(/%20/g, " ");
 
   useEffect(() => {
     const getPapers = async () => {
@@ -82,7 +83,9 @@ const Subject = () => {
     "@type": "WebPage",
     name: `${Class.toUpperCase()} ${subject} Question Papers`,
     description: `Download ${Class.toUpperCase()} ${subject} previous year question papers, model papers, and study materials to prepare for Karnataka Board exams.`,
-    url: `https://acadigo.vercel.app/${Class}/${stream}/${subject}`,
+    url: `https://acadigo.vercel.app/${Class}/${slugify(stream)}/${slugify(
+      subject
+    )}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
@@ -138,7 +141,9 @@ const Subject = () => {
           />
           <meta
             property="og:url"
-            content={`https://acadigo.vercel.app/${Class}/${stream}/${subject}`}
+            content={`https://acadigo.vercel.app/${Class}/${slugify(
+              stream
+            )}/${slugify(subject)}`}
           />
           <meta property="og:type" content="website" />
           <script type="application/ld+json">
@@ -169,9 +174,9 @@ const Subject = () => {
                     <CardTitle className="text-2xl">{paper.title}</CardTitle>
                     <div className="flex justify-between sm:justify-around w-full">
                       <Link
-                        href={`/preview/${Class}/${subject}/${
+                        href={`/preview/${Class}/${slugify(subject)}/${slugify(
                           paper.title
-                        }?preview=${encodeURIComponent(
+                        )}?preview=${encodeURIComponent(
                           paper.preview
                         )}&download=${encodeURIComponent(
                           "https://drive.google.com/uc?export=download&id=" +

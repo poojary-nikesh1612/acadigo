@@ -13,6 +13,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Comment from "@/components/Comment";
+import { slugify } from "@/lib/utils";
 
 const Subject = () => {
   const Classes = ["kcet", "neet", "comedk"];
@@ -161,9 +162,9 @@ const Subject = () => {
                     <CardTitle className="text-2xl">{paper.title}</CardTitle>
                     <div className="flex justify-between sm:justify-around w-full">
                       <Link
-                        href={`/preview/${Class}/${Class}/${
+                        href={`/preview/${Class}/${Class}/${slugify(
                           paper.title
-                        }?preview=${encodeURIComponent(
+                        )}?preview=${encodeURIComponent(
                           paper.preview
                         )}&download=${encodeURIComponent(
                           "https://drive.google.com/uc?export=download&id=" +

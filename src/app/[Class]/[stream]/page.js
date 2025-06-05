@@ -12,12 +12,14 @@ import React, { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { notFound, useParams } from "next/navigation";
 import axios from "axios";
+import { slugify, unSlugify } from "@/lib/utils";
 
 const Stream = () => {
   const Classes = ["sslc", "iipuc"];
   let { Class, stream } = useParams();
   const [subjects, setSubjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  stream = unSlugify(stream);
 
   useEffect(() => {
     document.title = `${Class.toUpperCase()} ${stream.toUpperCase()} - Previous Year Papers & Study Materials`;
@@ -40,8 +42,6 @@ const Stream = () => {
 
   if (!Classes.includes(Class)) return notFound();
 
-  stream = stream.replace(/%20/g, " ");
-
   useEffect(() => {
     const getSubjects = async () => {
       try {
@@ -61,7 +61,7 @@ const Stream = () => {
     "@type": "WebPage",
     name: `${Class.toUpperCase()} ${stream.toUpperCase()} Question Papers`,
     description: `Download ${Class.toUpperCase()} ${stream.toUpperCase()} previous year question papers, model papers, and study materials to prepare for Karnataka Board exams.`,
-    url: `https://acadigo.vercel.app/${Class}/${stream}`,
+    url: `https://acadigo.vercel.app/${Class}/${slugify(stream)}`,
     author: {
       "@type": "Organization",
       name: "Acadigo",
@@ -117,7 +117,7 @@ const Stream = () => {
           />
           <meta
             property="og:url"
-            content={`https://acadigo.vercel.app/${Class}/${stream}`}
+            content={`https://acadigo.vercel.app/${Class}/${slugify(stream)}`}
           />
           <meta property="og:type" content="website" />
           <script type="application/ld+json">
@@ -165,7 +165,9 @@ const Stream = () => {
                       className="flex flex-col gap-2 items-center w-full min-h-[300px] p-2 hover:shadow-3xl hover:shadow-blue-700 transition duration-200 ease-in-out border-gray-400"
                     >
                       <Link
-                        href={`/${Class.toLowerCase()}/${stream.toLowerCase()}/${subject.toLowerCase()}`}
+                        href={`/${Class.toLowerCase()}/${slugify(
+                          stream.toLowerCase()
+                        )}/${slugify(subject.toLowerCase())}`}
                         className="bg-[url(/bg.avif)] rounded-lg w-full h-[85%] flex items-center justify-center"
                       >
                         <div className="text-white max-w-[90%] text-4xl sm:text-5xl lg:text-6xl font-bold text-center">
@@ -175,7 +177,9 @@ const Stream = () => {
 
                       <div>
                         <Link
-                          href={`/${Class.toLowerCase()}/${stream.toLowerCase()}/${subject.toLowerCase()}`}
+                          href={`/${Class.toLowerCase()}/${slugify(
+                            stream.toLowerCase()
+                          )}/${slugify(subject.toLowerCase())}`}
                         >
                           <CardTitle className="text-2xl text-blue-600 hover:text-blue-700 relative inline-block after:content-[''] after:absolute after:w-0 after:h-[3px] after:bottom-[1px] after:left-1/2 after:bg-blue-700 after:transition-[width_left] after:duration-200 hover:after:w-full hover:after:left-0">
                             {subject.replace(/\d+/g, "")}
