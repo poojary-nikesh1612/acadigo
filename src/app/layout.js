@@ -33,7 +33,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <meta name="google-site-verification" content="Q55-iGR5JW9g0UqnqqM5fyxuCrURPq8nastHfydcTrI" />
+        <meta
+          name="google-site-verification"
+          content="Q55-iGR5JW9g0UqnqqM5fyxuCrURPq8nastHfydcTrI"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black `}
@@ -41,10 +44,6 @@ export default function RootLayout({ children }) {
         {children}
         <Analytics />
         <Toaster />
-        <script
-          type="text/javascript"
-          src="//pl25970916.effectiveratecpm.com/cc/6a/f8/cc6af81f6c9b6db6dff0546b0bbec8f7.js"
-        ></script>
       </body>
     </html>
   );
