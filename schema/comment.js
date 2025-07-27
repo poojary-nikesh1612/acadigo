@@ -4,7 +4,7 @@ export const commentSchema = z.object({
   comment: z
     .string()
     .min(5, { message: "comment must be atleast 5 characters" })
-    .max(100, { message: "Comment should be within 100 characters" })
+    .max(300, { message: "Comment should be within 300 characters" })
     .nonempty("Comment can't be empty"),
   username: z
     .string()

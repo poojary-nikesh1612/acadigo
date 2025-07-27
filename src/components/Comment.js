@@ -164,7 +164,7 @@ const Comment = ({ page_id }) => {
               <div className="flex items-center gap-1">
                 <Image
                   src={
-                    content.username === "admin_of_acadigo"
+                    content.username === "admin_nikesh"
                       ? "/icon.png"
                       : "/profile.png"
                   }
@@ -175,7 +175,7 @@ const Comment = ({ page_id }) => {
                 />
                 <div>
                   <div className="font-bold text-sm text-blue-950 ">
-                    {content.username === "admin_of_acadigo" ? (
+                    {content.username === "admin_nikesh" ? (
                       <div className="flex gap-1">
                         Acadigo{" "}
                         <Image
