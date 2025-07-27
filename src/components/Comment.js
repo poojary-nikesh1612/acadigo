@@ -163,16 +163,32 @@ const Comment = ({ page_id }) => {
             <div className="mt-3" key={index}>
               <div className="flex items-center gap-1">
                 <Image
-                  src="/profile1.png"
+                  src={
+                    content.username === "admin_of_acadigo"
+                      ? "/icon.png"
+                      : "/profile.png"
+                  }
                   alt="Profile avatar"
                   className="rounded-full border-2 border-blue-300 border-double "
                   width={50}
                   height={50}
                 />
                 <div>
-                  <p className="font-bold text-sm text-blue-950 ">
-                    {content.username}
-                  </p>
+                  <div className="font-bold text-sm text-blue-950 ">
+                    {content.username === "admin_of_acadigo" ? (
+                      <div className="flex gap-1">
+                        Acadigo{" "}
+                        <Image
+                          src="/check.png"
+                          width={15}
+                          height={15}
+                          alt="blue tick image"
+                        />
+                      </div>
+                    ) : (
+                      content.username
+                    )}
+                  </div>
                   <p className="font-bold text-xs text-gray-600 ">
                     {" "}
                     {new Date(content.createdAt).toLocaleDateString("en-IN", {

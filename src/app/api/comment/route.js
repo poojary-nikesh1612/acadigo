@@ -14,6 +14,7 @@ const commentSchema = new Schema({
     default: Date.now,
   },
 });
+
 const commentsSchema = new Schema({
   page_id: {
     type: String,
