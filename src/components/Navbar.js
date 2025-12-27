@@ -239,7 +239,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="neet"
+                    href="/neet"
                     aria-label="NEET exam papers"
                     onClick={ToggleMenubar}
                   >
@@ -248,7 +248,7 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </Link>
                   <Link
-                    href="KCET"
+                    href="/kcet"
                     aria-label="KCET exam papers"
                     onClick={ToggleMenubar}
                   >
