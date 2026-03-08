@@ -45,7 +45,7 @@ const UploadResources = () => {
     formData.append("ClassName", data.ClassName);
     formData.append(
       "uploader",
-      data.uploader === "" ? "Anonymous" : data.uploader
+      data.uploader === "" ? "Anonymous" : data.uploader,
     );
     formData.append("subject", data.subject);
 
@@ -97,7 +97,9 @@ const UploadResources = () => {
               name="ClassName"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="font-bold text-lg">Class</FormLabel>
+                  <FormLabel className="font-bold text-lg">
+                    Class/Exam
+                  </FormLabel>
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
@@ -109,6 +111,9 @@ const UploadResources = () => {
                       <SelectContent>
                         <SelectItem value="II-PUC">II-PUC</SelectItem>
                         <SelectItem value="SSLC">SSLC</SelectItem>
+                        <SelectItem value="NEET">NEET</SelectItem>
+                        <SelectItem value="KCET">KCET</SelectItem>
+                        <SelectItem value="COMEDK">COMEDK</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -246,7 +251,7 @@ const UploadResources = () => {
           </form>
         </Form>
       </div>
-      <Comment page_id='upload-resources'/>
+      <Comment page_id="upload-resources" />
     </div>
   );
 };

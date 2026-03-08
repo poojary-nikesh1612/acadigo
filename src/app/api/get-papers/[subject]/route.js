@@ -1,11 +1,11 @@
+import connectDB from "@/lib/db";
 import mongoose from "mongoose";
 
 export async function GET(req, { params }) {
   const { subject } = await params;
-  
 
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await connectDB();
 
     // Access the collection dynamically
     const subjectCollection = mongoose.connection.db.collection("subjects");
@@ -19,7 +19,7 @@ export async function GET(req, { params }) {
         {
           status: 404,
           headers: { "Content-Type": "application/json" },
-        }
+        },
       );
     }
     return new Response(
@@ -27,7 +27,7 @@ export async function GET(req, { params }) {
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -36,7 +36,7 @@ export async function GET(req, { params }) {
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 }

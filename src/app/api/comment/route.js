@@ -1,34 +1,9 @@
-import mongose, { Schema } from "mongoose";
-
-const commentSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  comment: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-const commentsSchema = new Schema({
-  page_id: {
-    type: String,
-    required: true,
-  },
-  comments: [commentSchema],
-});
-
-const COMMENT =
-  mongose.models.COMMENT || mongose.model("COMMENT", commentsSchema);
+import connectDB from "@/lib/db";
+import COMMENT from "@/lib/models/commentSchema";
 
 export async function POST(req) {
   try {
-    await mongose.connect(process.env.MONGO_URI);
+    await connectDB();
     const { page_id, username, comment } = await req.json();
 
     const newComment = { username, comment };
@@ -42,12 +17,12 @@ export async function POST(req) {
 
     return Response.json(
       { success: true, message: "Comment posted successfully" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return Response.json(
       { success: false, message: "Failed to post comment.Try again!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -73,18 +48,18 @@ export async function GET(req) {
     if (!Page.length) {
       return Response.json(
         { success: false, message: "Comments not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return Response.json(
       { success: true, comments: Page[0].comments },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
     return Response.json(
       { success: false, message: "Failed to fetch comments" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

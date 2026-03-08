@@ -3,35 +3,20 @@ import { google } from "googleapis";
 import { NextResponse } from "next/server";
 import { PassThrough } from "stream";
 import path from "path";
+import connectDB from "@/lib/db";
+import Resource from "@/lib/models/resourceSchema";
 
-const resourceSchema = new mongoose.Schema({
-  ClassName: {
-    type: String,
-    required: true,
-  },
-  subject: {
-    type: String,
-    required: true,
-  },
-  resourceLink: {
-    type: String,
-    required: true,
-  },
-  uploader: {
-    type: String,
-    required: true,
-  },
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  "https://developers.google.com/oauthplayground",
+);
+
+oauth2Client.setCredentials({
+  refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
 });
 
-const Resource =
-  mongoose.models.Resource || mongoose.model("Resource", resourceSchema);
-
-const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(process.cwd(), "service-account.json"),
-  scopes: ["https://www.googleapis.com/auth/drive.file"],
-});
-
-const drive = google.drive({ version: "v3", auth });
+const drive = google.drive({ version: "v3", auth: oauth2Client });
 
 export async function POST(req) {
   try {
@@ -47,10 +32,11 @@ export async function POST(req) {
           success: false,
           message: "No files selected. Please upload at least one file.",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
-    await mongoose.connect(process.env.MONGO_URI);
+
+    await connectDB();
 
     for (const file of files) {
       // Convert file to Buffer
@@ -64,7 +50,7 @@ export async function POST(req) {
         requestBody: {
           name: subject,
           mimeType: file.type,
-          parents: [process.env.GOOGLE_DRIVE_FOLDER_ID],
+          parents: [process.env.GOOGLE_DRIVE_FOLDER_ID.trim()],
         },
         media: {
           mimeType: file.type,
@@ -82,15 +68,13 @@ export async function POST(req) {
       await newResource.save();
     }
 
-    mongoose.connection.close();
-
     return NextResponse.json(
       {
         success: true,
         message:
           "Your file has been submitted! We'll review it shortly, and once approved, it will be available on the site.",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.log(error);
@@ -100,7 +84,7 @@ export async function POST(req) {
         message:
           "Something went wrong. Please try again or check the file format and size.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
