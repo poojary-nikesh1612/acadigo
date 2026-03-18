@@ -60,7 +60,7 @@ const Comment = ({ page_id }) => {
           headers: {
             "Content-Type": "Application/json",
           },
-        }
+        },
       );
       if (res.data.success) {
         toast({
@@ -175,19 +175,9 @@ const Comment = ({ page_id }) => {
                 />
                 <div>
                   <div className="font-bold text-sm text-blue-950 ">
-                    {content.username === "admin_nikesh" ? (
-                      <div className="flex gap-1">
-                        Acadigo{" "}
-                        <Image
-                          src="/check.png"
-                          width={15}
-                          height={15}
-                          alt="blue tick image"
-                        />
-                      </div>
-                    ) : (
-                      content.username
-                    )}
+                    {content.username === "admin_nikesh"
+                      ? "Acadigo"
+                      : content.username}
                   </div>
                   <p className="font-bold text-xs text-gray-600 ">
                     {" "}
