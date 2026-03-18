@@ -18,6 +18,7 @@ const Searchbar = () => {
   };
 
   const allSubjects = [];
+  const exams = ["NEET", "KCET", "COMEDK"];
 
   Object.entries(datasets).forEach(([Class, data]) => {
     Class = Class.replace("sub", "");
@@ -32,13 +33,21 @@ const Searchbar = () => {
     });
   });
 
+  exams.forEach((exam) => {
+    allSubjects.push({
+      Class: "",
+      stream: "",
+      subject: exam,
+    });
+  });
+
   const handleSearch = (e) => {
     const value = e.target.value;
     setQuery(value);
 
     if (value.length > 0) {
       const searchResults = allSubjects.filter((Subject) =>
-        Subject.subject.toLowerCase().startsWith(value.toLowerCase())
+        Subject.subject.toLowerCase().startsWith(value.toLowerCase()),
       );
       setSearchResults(searchResults);
     } else {
@@ -63,9 +72,13 @@ const Searchbar = () => {
               searchResults.map((result, index) => (
                 <Link
                   key={index}
-                  href={`/${result.Class.toLowerCase()}/${slugify(
-                    result.stream.toLowerCase()
-                  )}/${slugify(result.subject.toLowerCase())}`}
+                  href={
+                    exams.includes(result.subject)
+                      ? `/${result.subject.toLowerCase()}`
+                      : `/${result.Class.toLowerCase()}/${slugify(
+                          result.stream.toLowerCase(),
+                        )}/${slugify(result.subject.toLowerCase())}`
+                  }
                 >
                   <div className="flex gap-4 items-center p-2 border-b border-gray-400">
                     <div className="bg-[url(/bg.avif)] rounded-lg w-[150px] h-[100px] flex items-center justify-center text-white  text-center">
@@ -75,13 +88,15 @@ const Searchbar = () => {
                       <div className="text-xl font-bold text-blue-600">
                         {result.subject.replace(/\d+/g, "")}
                       </div>
-                      <div className="text-gray-500 text-sm">
-                        {result.Class.toUpperCase()}(
-                        <span className="text-gray-500 text-xs">
-                          {result.stream}
-                        </span>
-                        )
-                      </div>
+                      {!exams.includes(result.subject) && (
+                        <div className="text-gray-500 text-sm">
+                          {result.Class.toUpperCase()}(
+                          <span className="text-gray-500 text-xs">
+                            {result.stream}
+                          </span>
+                          )
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Link>
